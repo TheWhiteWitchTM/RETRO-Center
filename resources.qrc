@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/Main.qml</file>
+        <file>qml/HomePage.qml</file>
+        <file>qml/LibraryPage.qml</file>
+        <file>qml/SettingsPage.qml</file>
+        <file>qml/SystemEditor.qml</file>
+        <file>qml/SystemCard.qml</file>
+        <file>qml/GameTile.qml</file>
+        <file>qml/RButton.qml</file>
+        <file>qml/Theme/qmldir</file>
+        <file>qml/Theme/Theme.qml</file>
+        <file>data/catalog.json</file>
+        <file>data/demos/drift.prg</file>
+        <file>data/demos/retro-center.dsk</file>
+        <file>data/demos/retro-center.prg</file>
+        <file>assets/retrocenter.svg</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,7 @@
+build/
+*.user
+.qmake.stash
+moc_*
+qrc_*
+*.o
+aqtinstall.log

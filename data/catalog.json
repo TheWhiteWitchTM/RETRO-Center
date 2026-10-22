@@ -1,0 +1,564 @@
+{
+  "systems": [
+    {
+      "id": "c64",
+      "name": "Commodore 64",
+      "short": "C64",
+      "year": "1982",
+      "manufacturer": "Commodore",
+      "blurb": "VICE, the breadbin, and whatever is in the disk drive.",
+      "accent": "#6f7cff",
+      "secondary": "#d9dcff",
+      "art": "c64",
+      "extensions": [".d64", ".g64", ".d71", ".d81", ".t64", ".prg", ".p00", ".tap", ".crt"],
+      "candidates": [
+        "c64",
+        "x64sc",
+        "x64",
+        "flatpak run --command=x64sc net.sf.VICE",
+        "\"C:/Program Files/VICE/x64sc.exe\""
+      ],
+      "plainArgs": [],
+      "gameArgs": ["-autostart", "{file}"],
+      "argsByExt": {},
+      "biosFlag": "",
+      "biosNote": "",
+      "biosRequired": false,
+      "flatpakId": "net.sf.VICE",
+      "installHint": "Looks for the c64 command, then x64sc, then Flatpak net.sf.VICE."
+    },
+    {
+      "id": "apple2",
+      "name": "Apple II",
+      "short": "Apple II",
+      "year": "1977",
+      "manufacturer": "Apple",
+      "blurb": "LinApple with the Disk II. Power on boots the master disk.",
+      "accent": "#7dff6a",
+      "secondary": "#d8ffd2",
+      "art": "apple2",
+      "extensions": [".dsk", ".do", ".po", ".nib", ".2mg"],
+      "candidates": [
+        "apple2",
+        "linapple"
+      ],
+      "plainArgs": [],
+      "gameArgs": ["--autoboot", "--d1", "{file}"],
+      "argsByExt": {
+        ".dsk": ["--autoboot", "--d1", "{file}"],
+        ".do": ["--autoboot", "--d1", "{file}"],
+        ".po": ["--autoboot", "--d1", "{file}"],
+        ".nib": ["--autoboot", "--d1", "{file}"],
+        ".2mg": ["--autoboot", "--hd1", "{file}"]
+      },
+      "biosFlag": "",
+      "biosNote": "",
+      "biosRequired": false,
+      "flatpakId": "",
+      "installHint": "Looks for the apple2 command, which starts LinApple."
+    },
+    {
+      "id": "ti99",
+      "name": "TI-99/4A",
+      "short": "TI-99",
+      "year": "1981",
+      "manufacturer": "Texas Instruments",
+      "blurb": "Libre99 with its own console firmware. Cartridges and disks both work.",
+      "accent": "#3ec7c7",
+      "secondary": "#d7f7f7",
+      "art": "ti99",
+      "extensions": [".ctg", ".rpk", ".bin", ".dsk"],
+      "candidates": [
+        "ti99",
+        "libre99"
+      ],
+      "plainArgs": ["--scale", "3"],
+      "gameArgs": ["--scale", "3", "--cartridge", "{file}"],
+      "argsByExt": {
+        ".ctg": ["--scale", "3", "--cartridge", "{file}"],
+        ".bin": ["--scale", "3", "--cartridge", "{file}"],
+        ".rpk": ["--scale", "3", "--cartridge", "{file}"],
+        ".dsk": ["--scale", "3", "--disk", "{file}"]
+      },
+      "biosFlag": "",
+      "biosNote": "",
+      "biosRequired": false,
+      "flatpakId": "",
+      "installHint": "Looks for the ti99 command, which starts Libre99."
+    },
+    {
+      "id": "amiga",
+      "name": "Amiga",
+      "short": "Amiga",
+      "year": "1985",
+      "manufacturer": "Commodore",
+      "blurb": "FS-UAE as an A500. Power on uses the built-in AROS ROM. Add a Kickstart you own to boot original disks.",
+      "accent": "#ff8a3d",
+      "secondary": "#ffe0cc",
+      "art": "amiga",
+      "extensions": [".adf", ".adz", ".ipf", ".dms", ".hdf"],
+      "candidates": [
+        "fs-uae",
+        "flatpak run net.fsuae.FS-UAE",
+        "/Applications/FS-UAE.app/Contents/MacOS/fs-uae",
+        "/opt/homebrew/bin/fs-uae",
+        "fs-uae.exe"
+      ],
+      "plainArgs": [],
+      "gameArgs": ["--floppy-drive-0={file}"],
+      "argsByExt": {
+        ".adf": ["--floppy-drive-0={file}"],
+        ".adz": ["--floppy-drive-0={file}"],
+        ".ipf": ["--floppy-drive-0={file}"],
+        ".dms": ["--floppy-drive-0={file}"],
+        ".hdf": ["--hard-drive-0={file}"]
+      },
+      "biosFlag": "--kickstart-file={bios}",
+      "biosNote": "Point this at a Kickstart ROM from an Amiga you own, or at an AROS ROM. It is used for every Amiga launch.",
+      "biosRequired": true,
+      "flatpakId": "net.fsuae.FS-UAE",
+      "installHint": "Installs Flatpak net.fsuae.FS-UAE, or uses fs-uae if it is already on PATH."
+    },
+    {
+      "id": "atarist",
+      "name": "Atari ST",
+      "short": "Atari ST",
+      "year": "1985",
+      "manufacturer": "Atari",
+      "blurb": "Hatari. EmuTOS is built in, so a TOS image is optional.",
+      "accent": "#d7d2c4",
+      "secondary": "#8fce6b",
+      "art": "atarist",
+      "extensions": [".st", ".msa", ".stx", ".dim", ".prg", ".tos", ".ttp"],
+      "candidates": [
+        "hatari",
+        "flatpak run org.tuxfamily.hatari",
+        "/Applications/Hatari.app/Contents/MacOS/hatari",
+        "/opt/homebrew/bin/hatari",
+        "hatari.exe"
+      ],
+      "plainArgs": [],
+      "gameArgs": ["{file}"],
+      "argsByExt": {},
+      "biosFlag": "--tos",
+      "biosNote": "Leave this empty to use Hatari's bundled EmuTOS. Add a TOS image here if you have one.",
+      "biosRequired": false,
+      "flatpakId": "org.tuxfamily.hatari",
+      "installHint": "Installs Flatpak org.tuxfamily.hatari, or uses hatari if it is already on PATH."
+    }
+  ],
+  "games": [
+    {
+      "id": "demo-c64-drift",
+      "systemId": "c64",
+      "title": "Drift",
+      "year": "2026",
+      "developer": "RETRO Center",
+      "blurb": "An original one-screen game bundled with RETRO Center. A moves left, D moves right. Miss a falling rock and the score stops.",
+      "kind": "bundled",
+      "bundled": "drift.prg"
+    },
+    {
+      "id": "ex-c64-boulder-dash",
+      "systemId": "c64",
+      "title": "Boulder Dash",
+      "year": "1984",
+      "developer": "First Star Software",
+      "blurb": "Dig, collect diamonds, and don't let the rocks fall on you.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-c64-impossible-mission",
+      "systemId": "c64",
+      "title": "Impossible Mission",
+      "year": "1984",
+      "developer": "Epyx",
+      "blurb": "Search the rooms, dodge the robots, and piece together the password.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-c64-paradroid",
+      "systemId": "c64",
+      "title": "Paradroid",
+      "year": "1985",
+      "developer": "Hewson",
+      "blurb": "Take over robots and clear a spaceship deck by deck.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-c64-wizball",
+      "systemId": "c64",
+      "title": "Wizball",
+      "year": "1987",
+      "developer": "Sensible Software",
+      "blurb": "Roll through grey levels and bring the colour back.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-c64-last-ninja",
+      "systemId": "c64",
+      "title": "The Last Ninja",
+      "year": "1987",
+      "developer": "System 3",
+      "blurb": "An isometric path of traps, guards, and one-hit punches.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-c64-elite",
+      "systemId": "c64",
+      "title": "Elite",
+      "year": "1984",
+      "developer": "Firebird",
+      "blurb": "Trade between planets and learn to dock the hard way.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-c64-maniac-mansion",
+      "systemId": "c64",
+      "title": "Maniac Mansion",
+      "year": "1987",
+      "developer": "Lucasfilm Games",
+      "blurb": "Three kids, one mansion, and a family of Edisons.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-c64-archon",
+      "systemId": "c64",
+      "title": "Archon",
+      "year": "1983",
+      "developer": "Free Fall Associates",
+      "blurb": "A board like chess, except the pieces fight for the square.",
+      "kind": "classic"
+    },
+    {
+      "id": "demo-a2-hello",
+      "systemId": "apple2",
+      "title": "Power-On",
+      "year": "2026",
+      "developer": "RETRO Center",
+      "blurb": "An original boot disk. If the text screen comes up, LinApple can see this shelf.",
+      "kind": "bundled",
+      "bundled": "retro-center.dsk"
+    },
+    {
+      "id": "local-a2-master",
+      "systemId": "apple2",
+      "title": "DOS 3.3 Master",
+      "year": "1983",
+      "developer": "Apple",
+      "blurb": "The master disk LinApple uses when you power the Apple II on with no game chosen.",
+      "kind": "local",
+      "pathHint": "${HOME}/.local/share/linapple/Master.dsk"
+    },
+    {
+      "id": "ex-a2-karateka",
+      "systemId": "apple2",
+      "title": "Karateka",
+      "year": "1984",
+      "developer": "Jordan Mechner",
+      "blurb": "Rotoscoped kicks on the way to the gate.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-a2-lode-runner",
+      "systemId": "apple2",
+      "title": "Lode Runner",
+      "year": "1983",
+      "developer": "Broderbund",
+      "blurb": "Dig holes, trap the guards, and collect every box of gold.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-a2-choplifter",
+      "systemId": "apple2",
+      "title": "Choplifter",
+      "year": "1982",
+      "developer": "Broderbund",
+      "blurb": "Land the helicopter, load the hostages, and get back out.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-a2-prince",
+      "systemId": "apple2",
+      "title": "Prince of Persia",
+      "year": "1989",
+      "developer": "Broderbund",
+      "blurb": "An hour on the clock, a sword, and floors that drop.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-a2-ultima4",
+      "systemId": "apple2",
+      "title": "Ultima IV",
+      "year": "1985",
+      "developer": "Origin Systems",
+      "blurb": "Walk Britannia and answer for the eight virtues.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-a2-wizardry",
+      "systemId": "apple2",
+      "title": "Wizardry",
+      "year": "1981",
+      "developer": "Sir-Tech",
+      "blurb": "Build a party of six and map a wireframe maze.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-a2-oregon",
+      "systemId": "apple2",
+      "title": "The Oregon Trail",
+      "year": "1985",
+      "developer": "MECC",
+      "blurb": "A wagon, a river, and a lot of decisions about food.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-a2-lemonade",
+      "systemId": "apple2",
+      "title": "Lemonade Stand",
+      "year": "1979",
+      "developer": "MECC",
+      "blurb": "Set the price of a cup and hope the weather holds.",
+      "kind": "classic"
+    },
+    {
+      "id": "local-ti-titris",
+      "systemId": "ti99",
+      "title": "Titris",
+      "year": "",
+      "developer": "Libre99",
+      "blurb": "A falling-blocks cartridge already in the Libre99 folder on this machine.",
+      "kind": "local",
+      "pathHint": "${HOME}/.local/share/libre99/carts/titris.ctg"
+    },
+    {
+      "id": "local-ti-sokoban",
+      "systemId": "ti99",
+      "title": "Sokoban",
+      "year": "",
+      "developer": "Libre99",
+      "blurb": "Push each crate onto a mark. Cartridge from the Libre99 set.",
+      "kind": "local",
+      "pathHint": "${HOME}/.local/share/libre99/carts/sokoban.ctg"
+    },
+    {
+      "id": "local-ti-jaywalker",
+      "systemId": "ti99",
+      "title": "Jaywalker 99",
+      "year": "",
+      "developer": "Libre99",
+      "blurb": "A small homebrew cartridge that sits beside Libre99.",
+      "kind": "local",
+      "pathHint": "${HOME}/.local/share/libre99/carts/jaywalker99.ctg"
+    },
+    {
+      "id": "ex-ti-parsec",
+      "systemId": "ti99",
+      "title": "Parsec",
+      "year": "1982",
+      "developer": "Texas Instruments",
+      "blurb": "A side-scrolling ship and the famous speech-synth warning.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-ti-alpiner",
+      "systemId": "ti99",
+      "title": "Alpiner",
+      "year": "1982",
+      "developer": "Texas Instruments",
+      "blurb": "Climb the mountain while the animals try to stop you.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-ti-munchman",
+      "systemId": "ti99",
+      "title": "Munch Man",
+      "year": "1982",
+      "developer": "Texas Instruments",
+      "blurb": "Lay a chain through the maze and keep ahead of the Hoonos.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-ti-invaders",
+      "systemId": "ti99",
+      "title": "TI Invaders",
+      "year": "1981",
+      "developer": "Texas Instruments",
+      "blurb": "The formation drops. You have a ship and a shield.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-ti-tunnels",
+      "systemId": "ti99",
+      "title": "Tunnels of Doom",
+      "year": "1982",
+      "developer": "Texas Instruments",
+      "blurb": "A dungeon map, corridor fights, and a quest item at the end.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-ti-wumpus",
+      "systemId": "ti99",
+      "title": "Hunt the Wumpus",
+      "year": "1980",
+      "developer": "Texas Instruments",
+      "blurb": "Caves, bats, pits, and a wumpus you should not walk into.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-amiga-lemmings",
+      "systemId": "amiga",
+      "title": "Lemmings",
+      "year": "1991",
+      "developer": "DMA Design",
+      "blurb": "Assign jobs, dig a path, and get the crowd to the exit.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-amiga-speedball2",
+      "systemId": "amiga",
+      "title": "Speedball 2",
+      "year": "1990",
+      "developer": "The Bitmap Brothers",
+      "blurb": "A violent future sport on a metal pitch.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-amiga-monkey",
+      "systemId": "amiga",
+      "title": "The Secret of Monkey Island",
+      "year": "1990",
+      "developer": "Lucasfilm Games",
+      "blurb": "Insult-sword fighting and a pirate who is still learning the job.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-amiga-beast",
+      "systemId": "amiga",
+      "title": "Shadow of the Beast",
+      "year": "1989",
+      "developer": "Psygnosis",
+      "blurb": "A long side-scrolling run that showed off the machine.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-amiga-sensible",
+      "systemId": "amiga",
+      "title": "Sensible Soccer",
+      "year": "1992",
+      "developer": "Sensible Software",
+      "blurb": "Tiny players, a big pitch, and a very fast ball.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-amiga-another",
+      "systemId": "amiga",
+      "title": "Another World",
+      "year": "1991",
+      "developer": "Delphine Software",
+      "blurb": "A scientist falls through a hole and has to run.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-amiga-crown",
+      "systemId": "amiga",
+      "title": "Defender of the Crown",
+      "year": "1986",
+      "developer": "Cinemaware",
+      "blurb": "Raid, joust, and try to hold England together.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-amiga-cannon",
+      "systemId": "amiga",
+      "title": "Cannon Fodder",
+      "year": "1993",
+      "developer": "Sensible Software",
+      "blurb": "A small squad, a joystick, and a hill full of turrets.",
+      "kind": "classic"
+    },
+    {
+      "id": "demo-st-hello",
+      "systemId": "atarist",
+      "title": "Power-On",
+      "year": "2026",
+      "developer": "RETRO Center",
+      "blurb": "An original GEMDOS program. Hatari runs it, then waits for a key.",
+      "kind": "bundled",
+      "bundled": "retro-center.prg"
+    },
+    {
+      "id": "ex-st-dungeon",
+      "systemId": "atarist",
+      "title": "Dungeon Master",
+      "year": "1987",
+      "developer": "FTL Games",
+      "blurb": "The real-time dungeon crawl that started on this machine.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-st-stunt",
+      "systemId": "atarist",
+      "title": "Stunt Car Racer",
+      "year": "1989",
+      "developer": "MicroStyle",
+      "blurb": "One car, a broken track, and the car in the other lane.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-st-xenon2",
+      "systemId": "atarist",
+      "title": "Xenon 2: Megablast",
+      "year": "1989",
+      "developer": "The Bitmap Brothers",
+      "blurb": "Vertical shooting set to a very loud soundtrack.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-st-another",
+      "systemId": "atarist",
+      "title": "Another World",
+      "year": "1991",
+      "developer": "Delphine Software",
+      "blurb": "The same escape, with the ST's sharper pixels.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-st-lemmings",
+      "systemId": "atarist",
+      "title": "Lemmings",
+      "year": "1991",
+      "developer": "DMA Design",
+      "blurb": "The crowd is smaller on screen and just as fragile.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-st-monkey",
+      "systemId": "atarist",
+      "title": "The Secret of Monkey Island",
+      "year": "1990",
+      "developer": "Lucasfilm Games",
+      "blurb": "Guybrush, a grog, and the same sword-fighting insults.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-st-elite",
+      "systemId": "atarist",
+      "title": "Elite",
+      "year": "1989",
+      "developer": "Firebird",
+      "blurb": "The ST version of the trading game, in filled polygons.",
+      "kind": "classic"
+    },
+    {
+      "id": "ex-st-pang",
+      "systemId": "atarist",
+      "title": "Pang",
+      "year": "1991",
+      "developer": "Ocean",
+      "blurb": "Pop the bubbles before they split all the way down.",
+      "kind": "classic"
+    }
+  ]
+}
