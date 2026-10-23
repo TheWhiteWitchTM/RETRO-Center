@@ -2,6 +2,12 @@
 # Run RETRO Center. Uses the build when Qt is installed, and dist/ when it is not.
 set -euo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# COSMIC Bar is offscreen and used to pass that platform to everything it
+# opened. With a real display, drop it so this shelf shows a window.
+if [ "${QT_QPA_PLATFORM:-}" = "offscreen" ] && [ -n "${WAYLAND_DISPLAY:-}${DISPLAY:-}" ]; then
+    unset QT_QPA_PLATFORM
+    unset QT_ENABLE_HIGHDPI_SCALING
+fi
 BUILD="$DIR/build/retrocenter"
 DIST="$DIR/dist/retrocenter"
 

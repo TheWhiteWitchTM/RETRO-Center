@@ -151,6 +151,12 @@ cat > "$ROOT/dist/retrocenter" << 'EOF'
 # Launch the bundled shelf. Qt libraries, plugins, and QML live next to this script.
 set -e
 HERE=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+# COSMIC Bar is offscreen and used to pass that platform to everything it
+# opened. With a real display, drop it so this shelf shows a window.
+if [ "${QT_QPA_PLATFORM:-}" = "offscreen" ] && [ -n "${WAYLAND_DISPLAY:-}${DISPLAY:-}" ]; then
+    unset QT_QPA_PLATFORM
+    unset QT_ENABLE_HIGHDPI_SCALING
+fi
 export LD_LIBRARY_PATH="$HERE/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="$HERE/plugins"
 export QT_QPA_PLATFORM_PLUGIN_PATH="$HERE/plugins/platforms"
