@@ -9,11 +9,12 @@ HEADERS += src/library.h
 RESOURCES += resources.qrc
 INCLUDEPATH += src
 
-# The Qt prefix is baked into the libs. RPATH lets a double-clicked binary
-# find that same Qt without a wrapper script.
+# $ORIGIN/../lib is dist/lib when the binary lives in dist/bin. The Qt prefix
+# is the fallback so ./build/retrocenter still runs when Qt is installed.
 unix:!macx {
-    QMAKE_RPATHDIR += $$[QT_INSTALL_LIBS]
     QMAKE_LFLAGS += -Wl,--disable-new-dtags
+    QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib\''
+    QMAKE_RPATHDIR += $$[QT_INSTALL_LIBS]
 }
 
 win32:CONFIG += console

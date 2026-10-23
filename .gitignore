@@ -1,4 +1,5 @@
 build/
+dist/
 *.user
 .qmake.stash
 moc_*

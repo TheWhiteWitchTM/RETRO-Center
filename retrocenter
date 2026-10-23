@@ -1,0 +1,23 @@
+#!/bin/bash
+# Run RETRO Center. Uses the build when Qt is installed, and dist/ when it is not.
+set -euo pipefail
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BUILD="$DIR/build/retrocenter"
+DIST="$DIR/dist/retrocenter"
+
+# A system Qt older than 6.12 still satisfies ldd. Require the symbol this build uses.
+qt_ok() {
+    local core
+    [[ -x "$1" ]] || return 1
+    core="$(ldd "$1" 2>/dev/null | awk '/libQt6Core\.so/{print $3; exit}')"
+    [[ -n "$core" && -e "$core" ]] || return 1
+    readelf -V "$core" 2>/dev/null | grep -q 'Name: Qt_6\.12'
+}
+if qt_ok "$BUILD"; then
+    exec "$BUILD" "$@"
+fi
+if [[ -x "$DIST" ]]; then
+    exec "$DIST" "$@"
+fi
+echo "RETRO Center is not built. With Qt installed, run ./build.sh or ./deploy.sh" >&2
+exit 1

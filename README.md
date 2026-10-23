@@ -12,7 +12,14 @@ Qt 6.4 or newer, with Qt Quick and Qt Quick Controls.
 
 ```bash
 ./build.sh
-./build/retrocenter
+./retrocenter
+```
+
+`./retrocenter` runs the build when Qt is installed. `./deploy.sh` builds, then writes `dist/`, the same shape as COSMIC Bar: `dist/retrocenter` launches it, and `dist/bin`, `dist/lib`, `dist/plugins`, and `dist/qml` carry the binary, the Qt libraries, the plugins, and the QML modules. That copy starts on a machine where Qt is not installed.
+
+```bash
+./deploy.sh
+./dist/retrocenter
 ```
 
 `build.sh` prefers `~/Qt/6.12.0` and otherwise uses `qmake6`. From a Qt kit you installed yourself:
@@ -30,6 +37,6 @@ cmake --build build
 
 On macOS and Windows, install VICE, LinApple (or another Apple II emulator), a TI-99/4A emulator, FS-UAE, and Hatari, then set each command in Settings if they are not on `PATH`. Power on starts FS-UAE with its built-in AROS ROM. Add a Kickstart you own in Settings to boot original Amiga disks. Hatari runs with its bundled EmuTOS until you add a TOS image.
 
-`./build/retrocenter --check` prints which emulators were found and whether the bundled demos extracted.
+`./retrocenter --check` prints which emulators were found and whether the bundled demos extracted.
 
 MIT.

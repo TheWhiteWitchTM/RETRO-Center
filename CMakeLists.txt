@@ -18,8 +18,10 @@ qt_add_executable(retrocenter
 target_link_libraries(retrocenter PRIVATE Qt6::Quick Qt6::QuickControls2)
 
 if(UNIX AND NOT APPLE)
+    get_filename_component(_qt_lib_dir "${Qt6_DIR}/../.." ABSOLUTE)
     set_target_properties(retrocenter PROPERTIES
-        BUILD_RPATH "\$ORIGIN"
-        INSTALL_RPATH "\$ORIGIN"
+        BUILD_RPATH "\$ORIGIN/../lib;${_qt_lib_dir}"
+        INSTALL_RPATH "\$ORIGIN/../lib;${_qt_lib_dir}"
+        LINK_FLAGS "-Wl,--disable-new-dtags"
     )
 endif()
